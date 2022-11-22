@@ -28,9 +28,7 @@ def shutudai(alphabet):
         if c not in abs_chars:
            print(c, end=" ")
     print()
-
     return abs_chars
-
 
 def kaitou(abs_chars):
     num = int(input("欠損文字はいくつあるでしょうか？："))
@@ -48,7 +46,6 @@ def kaitou(abs_chars):
 
         print("全部正解です。")
         return True
-            
 
 if __name__ == "__main__":
     st = time.time()
