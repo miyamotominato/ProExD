@@ -8,7 +8,7 @@ def button_click(event):
     if num == "AC":
 
         entry.delete(0, tk.END)
-        entry.insert(tk.END, res)
+        entry.insert(tk.END)
     if num =="=":
         siki = entry.get() 
         res = eval(siki) 
