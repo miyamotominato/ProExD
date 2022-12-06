@@ -14,8 +14,9 @@ def timer():
     global tmr 
 
     if tmr < 0:
-        root.after(2000, lambda:root.destroy())
+        #root.after(2000, lambda:root.destroy())
         tkm.showinfo("時間切れ", "残念でした")
+        exit()
     if mx == 13 and my == 7:
         return
     else:
@@ -39,8 +40,9 @@ def main_proc():
     canvas.coords("こうかとん",cx, cy)
 
     if mx == 13 and my == 7:
-        root.after(2000, lambda:root.destroy())
+        #root.after(2000, lambda:root.destroy())
         tkm.showinfo("ゴール", "おめでとう")
+        exit()
     timer()
     root.after(100, main_proc)
 
