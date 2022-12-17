@@ -42,13 +42,26 @@ def main():
     scrn_sfc.blit(bomb_sfc, bomb_rct) 
     vx, vy = +1, +1
 
+    bomb_sfc2 = pg.Surface((20, 20))
+    bomb_sfc2.set_colorkey((0, 0, 0))
+    pg.draw.circle(bomb_sfc2, (255, 0, 0), (10, 10), 10)
+    bomb_rct2 = bomb_sfc2.get_rect()
+    bomb_rct2.centerx = random.randint(0, scrn_rct.width)
+    bomb_rct2.centery = random.randint(0, scrn_rct.height)
+    scrn_sfc.blit(bomb_sfc2, bomb_rct2) 
+    vx2, vy2 = +3, +3
+    
+    
+
     # 練習２
     while True:
         scrn_sfc.blit(pgbg_sfc, pgbg_rct) 
+        
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
+        
 
         # 練習4
         key_dct = pg.key.get_pressed() # 辞書型
@@ -71,7 +84,7 @@ def main():
             if key_dct[pg.K_RIGHT]:
                 tori_rct.centerx -= 1            
         scrn_sfc.blit(tori_sfc, tori_rct) 
-
+       
         # 練習６
         bomb_rct.move_ip(vx, vy)
         scrn_sfc.blit(bomb_sfc, bomb_rct) 
@@ -79,8 +92,17 @@ def main():
         vx *= yoko
         vy *= tate
 
+        bomb_rct2.move_ip(vx2, vy2)
+        scrn_sfc.blit(bomb_sfc2, bomb_rct2) 
+        yoko2, tate2 = check_bound(bomb_rct2, scrn_rct)
+        vx2 *= yoko2
+        vy2 *= tate2
+
         # 練習８
-        if tori_rct.colliderect(bomb_rct):
+        if tori_rct.colliderect(bomb_rct) or tori_rct.colliderect(bomb_rct2):
+            #scrn_sfc.blit(txt_end,(900, 400))
+            pg.time.wait(3000)
+
             return
 
         pg.display.update()
