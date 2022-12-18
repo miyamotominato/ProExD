@@ -56,8 +56,6 @@ def main():
     # 練習２
     while True:
         scrn_sfc.blit(pgbg_sfc, pgbg_rct) 
-        
-
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
@@ -74,7 +72,6 @@ def main():
         if key_dct[pg.K_RIGHT]:
             tori_rct.centerx += 1
         if check_bound(tori_rct, scrn_rct) != (+1, +1):
-            # どこかしらはみ出ていたら
             if key_dct[pg.K_UP]:
                 tori_rct.centery += 1
             if key_dct[pg.K_DOWN]:
@@ -100,11 +97,19 @@ def main():
 
         # 練習８
         if tori_rct.colliderect(bomb_rct) or tori_rct.colliderect(bomb_rct2):
-            #scrn_sfc.blit(txt_end,(900, 400))
+            jikan = pg.time.get_ticks()
+            fonto = pg.font.Font(None,80)
+            txt = fonto.render(f"{int(jikan/1000)}seconds escape",True,(255,0,0))
+            scrn_sfc.blit(txt,(500,200))
+            fonto = pg.font.Font(None,80)
+            txt = fonto.render("Game Over",True,(255,0,0))
+            scrn_sfc.blit(txt,(500,400))
+            pg.display.update()
+            clock.tick(0.5)
+            
             pg.time.wait(3000)
 
             return
-
         pg.display.update()
         clock.tick(1000)
 
