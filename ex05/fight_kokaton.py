@@ -14,24 +14,6 @@ class Screen:
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct) 
 
-"""  ---攻撃手段製作途中---
-class Bullet:
-    def __init__(self,img_path, ratio, speed):
-        self.sfc = pg.image.load(img_path)
-        self.sfc = pg.transform.rotozoom(self.sfc, 0, ratio)
-        self.rct = self.sfc.get_rect()
-
-    def blit(self, scr:Screen):
-        scr.sfc.blit(self.sfc, self.rct)
-
-    def update(self, scr:Screen):
-
-        if pg.K_SPACE:
-
-        self.rect.move_ip(0, self.speed)
-        if self.rect.top <= 0:
-            self.kill()
-"""
 
 class Bird:
     key_delta = {
