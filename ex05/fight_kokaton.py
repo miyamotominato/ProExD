@@ -95,21 +95,18 @@ def check_bound(obj_rct, scr_rct):
 def main():
     clock =pg.time.Clock()
 
-    # 練習１
     scr = Screen("逃げろ！こうかとん", (1600,900), "fig/pg_bg.jpg")
 
-    # 練習３
     kkt = Bird("fig/7.png", 2.0, (900,400))
     kkt.update(scr)
 
-    # 練習５
+    #爆弾追加
     bkd_lst = []
     for i in range(5):
         #bkd = Bomb("fig/3.png", 1.5,  (+1, +1), scr)
         #bkd.update(scr)
         bkd_lst.append(Bomb("ex05/data/alien1.png", 1.0,  (+1, +1), scr))#"fig/3.png"
 
-    # 練習２
     while True:        
         scr.blit()
 
@@ -118,8 +115,10 @@ def main():
                 return
 
         kkt.update(scr)
+
         for i in bkd_lst:
             i.update(scr)
+
             if kkt.rct.colliderect(i.rct):
                 jikan = pg.time.get_ticks()
                 fonto = pg.font.Font(None,80)
@@ -131,6 +130,7 @@ def main():
                 pg.display.update()
                 clock.tick(0.5)
                 return 
+                
         pg.display.update()
         clock.tick(1000)
 
